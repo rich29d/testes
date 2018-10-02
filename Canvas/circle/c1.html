@@ -1,0 +1,70 @@
+<!--
+	NOTES:
+	1. All tokens are represented by '$' sign in the template.
+	2. You can write your code only wherever mentioned.
+	3. "DO NOT" alter the tokens in the template html as they are required during publishing.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>c1</title>
+<!-- write your code here -->
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+  <script>
+  $( function() {
+   /* $( "#slider-range-min" ).slider({
+      range: "min",
+      value: 1,
+      min: 1,
+      max: 49,
+      slide: function( event, ui ) {
+        //$( "#amount" ).val( "$" + ui.value );
+		//este.gotoAndStop(ui.value);
+      }
+    });*/
+  } );
+  </script>
+
+
+
+<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+<script src="c1.js"></script>
+<script>
+var canvas, stage, exportRoot;
+function init() {
+	// --- write your JS code here ---
+	
+	createjs.MotionGuidePlugin.install();
+
+	canvas = document.getElementById("canvas");
+	exportRoot = new lib.c1();
+
+	stage = new createjs.Stage(canvas);
+	stage.addChild(exportRoot);
+	stage.update();
+
+	createjs.Ticker.setFPS(lib.properties.fps);
+	createjs.Ticker.addEventListener("tick", stage);
+}
+
+</script>
+
+<!-- write your code here -->
+
+</head>
+<body onload="init();" style="background-color:#D4D4D4;margin:0px;">
+	<!--<input type="range" name="points" class="tempo" value="25" min="0" max="49"><br>-->
+    <div id="slider-range-min-1" style="width:100px; margin-left:50px; margin-top:50px;"></div><br>
+    <div id="slider-range-min-2" style="width:100px; margin-left:50px; margin-top:5px;"></div><br>
+    <div id="slider-range-min-3" style="width:100px; margin-left:50px; margin-top:5px;"></div><br>
+	<canvas id="canvas" width="550" height="400" style="background-color:#FFFFFF"></canvas>
+
+</body>
+</html>

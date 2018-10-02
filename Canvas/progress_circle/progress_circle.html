@@ -1,0 +1,116 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>00h:00m:00s</title>
+<style>
+	body{
+		margin: 0;
+		padding: 0;
+		background: #222;
+	}
+</style>
+</head>
+
+<body>
+<center>
+    <div id="txt"><span id="hora">00</span>:<span id="minuto">00</span>:<span id="segundo">00</span></div>
+    <canvas id="can" width="500" height="500" />
+</center>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+
+
+var canvas = document.getElementById("can");
+var txt = document.getElementById("txt");
+var ctx = canvas.getContext('2d');
+var ang = .15 * 60 * 100;
+var seg = .2 * 60 * 100;
+var mil = ang + 1;
+var s = 0;
+var m = 0;
+var h = 0;
+
+var rel = {
+	hor : 	h < 10 ? "0" + h + "h" : h + "h",
+	min : 	m < 10 ? "0" + m + "m" : m + "m",
+	seg : 	s < 10 ? "0" + s + "s" : s + "s",
+}
+
+function notificacao() {
+	Notification.requestPermission(function() {
+        var notification = new Notification("Título", {
+            body: "Pomodoro!",
+      icon: "http://www.e-farsas.com/wp-content/uploads/relogio.jpg"
+        });
+    });
+
+}
+
+function relogio(){
+  if (mil == 100) { s++; mil = 0; }
+	if (s == 60) { m++; s = 0; }
+	if (m == 60) { h++; s = 0; m = 0; }
+	
+	
+		rel.hor = h < 10 ? "0" + h + "h" : h + "h",
+		rel.min = h < 10 ? "0" + m + "m" : m + "m",
+		rel.seg = s < 10 ? "0" + s + "s" : s + "s",
+	
+	
+	$("#hora").text(rel.hor);
+	$("#minuto").text(rel.min);
+	$("#segundo").text(rel.seg);		
+	mil++;
+		
+}
+
+$('title').text(rel.min + ":" + rel.seg);	
+setInterval(function(){
+	$('title').text(rel.min + ":" + rel.seg);	
+},80);
+
+var tempo;
+function animacao(){
+	//tempo = setInterval(function(){
+		ctx.beginPath();
+		ctx.moveTo(canvas.width/2,canvas.height/2);	
+		ctx.arc(canvas.width/2,canvas.height/2,canvas.height/3, 0, 2 * Math.PI * (++ang/seg), false);
+		
+		var grd = ctx.createLinearGradient(0, 0, canvas.width, 180);
+		grd.addColorStop(0, "#fe8c00");
+		grd.addColorStop(1, "#f83600");
+		
+		ctx.fillStyle = grd;
+		ctx.fill();
+	
+	  
+	  if(ang==seg){
+		  clearInterval(tempo);
+		  notificacao();
+	  }else setTimeout(function(){ctx.arc(canvas.width/2,canvas.height/2,canvas.height/3, 0, 2 * Math.PI * (++ang/seg), false);},100)
+	  relogio();
+	  
+	//},10);
+}
+
+window.requestAnimationFrame(animacao);
+
+/*animacao();
+$(window).blur(function(e) {
+    clearInterval(tempo);
+	animacao();
+});
+$(window).focus(function(e) {
+    clearInterval(tempo);
+	animacao();
+});*/
+
+
+
+
+
+
+</script>
+</body>
+</html>

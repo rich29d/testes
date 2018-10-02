@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Richard DS</title>
+
+<style>
+	
+	svg {
+	  border: 3px solid #eee;
+	  display: block;
+	  margin: 1em auto;
+	  max-width: 500px;
+	}
+	p {
+	  color: #aaa;
+	  text-align: center;
+	  margin: 2em 0;
+	}
+
+</style>
+
+</head>
+
+<body>
+
+<svg width="500" height="100">
+  <circle id="orange-circle" r="20" cx="50" cy="50" fill="orange" />
+  
+  <animate 
+           xlink:href="#orange-circle"
+           attributeName="cx"
+           from="50"
+           to="450" 
+           dur="1s"
+           begin="click"
+           fill="freeze" />
+</svg>
+
+
+<svg viewBox="0 0 100 100">
+  <path fill="green">
+    <animate attributeName="d"
+             values="M 50,0 
+                     C 75,25 75,25 100,50 
+                     75,75 75,75 50,100
+                     25,75 25,75 0,50
+                     25,25 25,25 50,0
+                     Z;
+
+                     M 25,50 
+                     C 37.5,25 37.5,25 50,0 
+                     
+                     50,100 50,100 0,100
+                     12.5,75 12.5,75 25,50
+                     Z;
+                     
+                     M 50,0
+                     C 77.6,0 100,22.4 100,50 
+                     100,77.6 77.6,100 50,100
+                     22.4,100, 0,77.6, 0,50
+                     0,22.4, 22.4,0, 50,0
+                     Z;"
+             dur="3s"
+             repeatCount="indefinite"
+             >
+    </animate>
+  </path>
+</svg>
+
+
+
+<p>Clique no círculo para iniciar a animação</p>
+
+</body>
+</html>

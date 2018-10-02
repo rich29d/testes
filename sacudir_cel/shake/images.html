@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>IOS Shake</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.ios-shake.js"></script>
+	<script type="text/javascript" src="js/jquery.ui.shake.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+
+setInterval(function(){ $('#shake').shake(); }, 3000);
+
+function phoneShake() 
+{
+$('#shake').html('Just shake your phone');
+
+
+var x=$('#hiddenval').val();
+
+if(x==1)
+{
+$("#hiddenval").val('2');
+$('#result').html("<img src='https://lh5.googleusercontent.com/-O01XApX8GCI/VJ9iXWSw2YI/AAAAAAAAMQw/t90m73aF3mo/s226/2.jpeg'/>");
+}
+else if(x==2)
+{
+$("#hiddenval").val('3');
+$('#result').html("<img src='https://lh4.googleusercontent.com/-wVr6hG6FERM/VJ9iXkr200I/AAAAAAAAMQs/AAiZ3ggrghQ/s226/4.jpeg'/>");
+}
+else
+{
+$("#hiddenval").val('1');
+$('#result').html("<img src='https://lh3.googleusercontent.com/-7KMGa0hQgxc/VJ9iXcviZdI/AAAAAAAAMQ0/Ia46PIV-1kk/s226/1.jpeg' />");
+}
+
+
+}
+
+$.shake({
+callback: function() 
+{
+phoneShake();
+}
+});
+});
+</script>
+	<style>
+	body{font-family:arial; }
+	#main{text-align:center;font-size:16px;}
+	h1{font-size:18px}
+	#shake{text-align:center;width:200px;color:#00cc00;margin:0 auto;}
+	</style>
+</head>
+
+<body>
+<div id="main">
+<h1>Detect shake in Phone using Jquery</h1>
+<div id="shake">Just shake your phone</div><br/>
+<div id="result"><img src='https://lh3.googleusercontent.com/-7KMGa0hQgxc/VJ9iXcviZdI/AAAAAAAAMQ0/Ia46PIV-1kk/s226/1.jpeg' /></div>
+<input type="hidden" id="hiddenval" val='1'/>
+</div>
+
+    
+    
+</body>
+</html>

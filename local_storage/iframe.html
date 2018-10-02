@@ -1,0 +1,23 @@
+<html>
+<head>
+<script>
+const sel = s => document.querySelector(s);
+
+window.addEventListener('message',function(event) {
+ sel('.teste1').innerHTML = event.data
+},false);
+
+const carregarStorage = () => sel('.teste2').innerHTML = localStorage.getItem('teste') || '';
+
+window.onload = function(e){ 
+    carregarStorage();
+}
+</script>
+</head>
+<body>
+postMessage:
+<span class='teste1'></span><br><br>
+localStorage:
+<span class='teste2'></span>
+</body>
+<html>

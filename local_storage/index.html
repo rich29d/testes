@@ -1,0 +1,34 @@
+<html>
+<head>
+<script>
+var ifrm = null;
+function carregarIframe() {
+	ifrm = document.querySelector('iframe');
+	ifrm.style.width = '400px'; // set width
+	ifrm.src = 'iframe.html'; // set src to new url
+}
+
+localStorage.setItem('teste', 'isso esta em um localStorage');
+
+function enviar(){
+ const texto = document.querySelector('input').value;
+ ifrm.contentWindow.postMessage(texto, '*');
+}
+
+window.parent.addEventListener('message',function(event) {
+ document.querySelector('div').innerHTML = event.data
+},false);
+
+window.onload = function(e){ 
+    carregarIframe();
+}
+</script>
+<head>
+<body>
+<iframe></iframe>
+<br>
+<input/>
+<button onclick='enviar()'>Clique me</button>
+
+</body>
+</html>

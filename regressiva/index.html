@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Regressiva</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="jquery.countdown-2.1.0/jquery.countdown.min.js"></script>
+</head>
+
+
+<body>
+
+<style>
+body{
+text-align: center;	
+}
+
+#clock{
+	display: inline-block;
+	margin: auto;	
+}
+#clock div{
+	text-align: center;
+	color: #000;
+	font-family: Verdana, Geneva, sans-serif;
+	float: left;
+	margin: 5px;
+	font-size: 36px;	
+}
+
+.progress{
+	margin-top: 20px;
+}
+</style>
+</style>
+
+<span id="clock"></span><br />
+<span id="barra"></span><br />
+
+<div class="form-group col-lg-12">
+    <div class="container">
+      <h2>Basic Progress Bar</h2>
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+          <span class="sr-only">70% Complete</span>
+        </div>
+      </div>
+    </div>
+</div>
+
+<span id="clock" class="reg"></span><br />
+<span id="barra" class="bar"></span><br />
+
+<div class="form-group col-lg-12">
+    <div class="container">
+      <h2 class="dataFinal">Basic Progress Bar</h2>
+      <div class="progress">
+        <div class="progress-bar prog" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+          <span class="sr-only">70% Complete</span>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script>
+
+var tempo = new Date();
+
+var data = tempo.getFullYear() + '/' + (tempo.getMonth()+1) + '/' + tempo.getDate();
+var 
+	hora = tempo.getHours(),
+	minuto = tempo.getMinutes() + 2;
+
+$('h2').text('Hora final: ' + hora + ':' + minuto +  ':' + '00' )
+
+$('#clock').countdown(data + ' ' + hora + ':' + minuto + ':00', function(event) {
+	$(this).html(event.strftime('<div>%D Dias %H : %M : %S</div>'));
+	var 
+		totalHours = event.offset.totalDays * 24 + event.offset.hours,
+		totalMin   = totalHours * 60 +  event.offset.minutes;
+		total   = totalMin * 60 +  event.offset.seconds;
+
+	var 
+		//totalHoursInicial = 2 * 24 ,
+		totalMinInicial   = 2, //totalHoursInicial * 60 ;
+		totalInicial   = totalMinInicial * 60;
+
+		
+	
+	$('.progress-bar').width((((totalInicial - total) / totalInicial) * 100) + "%");
+	$('#barra').html((totalInicial - total) + " : " + (((totalInicial - total) / totalInicial) * 100) + "%");
+});
+
+$('.dataFinal').text('Data final: 2016/8/1 00:00:00' )
+
+$('.reg').countdown( '2016/8/1 00:00:00', function(event) {
+	$(this).html(event.strftime('<div>%D Dias %H : %M : %S</div>'));
+	var 
+		totalHours = event.offset.totalDays * 24 + event.offset.hours,
+		totalMin   = totalHours * 60 +  event.offset.minutes;
+		total   = totalMin * 60 +  event.offset.seconds;
+
+	var 
+		totalHoursInicial = 3 * 24 ,
+		totalMinInicial   = totalHoursInicial * 60 ;
+		totalInicial   = totalMinInicial * 60;
+
+		
+	
+	$('.prog').width((((totalInicial - total) / totalInicial) * 100) + "%");
+	$('.bar').html((totalInicial - total) + " : " + (((totalInicial - total) / totalInicial) * 100) + "%");
+});
+
+
+</script>
+
+</body>
+</html>
